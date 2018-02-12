@@ -4,24 +4,18 @@ var Site = Site || {};
     //properites  
     bootstrap : function(){   
       console.log('init site bootstrap');
-      this.highlightcode();
-      this.navBarEvent();
+      this.fullscreensection();
       this.scrollEvent();
-      this.lazyLoading();
-      this.scrollpy();
+      this.resizeEvent();
+    },
+    // fullscreensection
+    fullscreensection: function(){
+      var screen_height = $(window).outerHeight();
+      $('.section').css('height',screen_height);
     },
     // highlight code
     highlightcode: function(){
-      // hljs.configure({
-      //   tabReplace: '    ', // 4 spaces
-      //   classPrefix: '', // don't append class prefix
-      //   useBR: true
-      // })
-      // hljs.initHighlighting();      
-      // console.log(hljs.listLanguages());
-      // hljs.configure({useBR: true});
       Prism.highlightAll();
-       
     },
     // scrollpy
     scrollpy: function(){
@@ -59,6 +53,12 @@ var Site = Site || {};
       $(window).scroll(function () {
         Site.dynamicPosition();
       })      
+    },
+    // resizeEvent
+    resizeEvent: function(){
+      $( window ).resize(function() {
+        Site.fullscreensection();
+      });
     },
     // dynamicPosition
     dynamicPosition: function(){
